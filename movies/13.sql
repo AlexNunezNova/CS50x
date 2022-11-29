@@ -1,0 +1,5 @@
+-- write a SQL query to list the names of all people who starred in a movie in which Kevin Bacon also starred.
+-- ID of Kevin Bacon : SELECT id FROM people WHERE name = "Kevin Bacon" AND birth = 1958
+-- Movies where Kevin Bacon Starred: SELECT stars.movie_id FROM stars JOIN people ON stars.person_id = people.id WHERE stars.person_id = (SELECT id FROM people WHERE name = "Kevin Bacon" AND birth = 1958);
+--- Count 186 of 185: SELECT COUNT(DISTINCT people.name) FROM people JOIN stars ON people.id = stars.person_id WHERE stars.movie_id IN (SELECT stars.movie_id FROM stars JOIN people ON stars.person_id = people.id WHERE stars.person_id = (SELECT id FROM people WHERE name = "Kevin Bacon" AND birth = 1958)) AND stars.person_id;
+SELECT DISTINCT people.name FROM people JOIN stars ON people.id = stars.person_id WHERE stars.movie_id IN (SELECT stars.movie_id FROM stars JOIN people ON stars.person_id = people.id WHERE stars.person_id = (SELECT id FROM people WHERE name = "Kevin Bacon" AND birth = 1958)) AND stars.person_id NOT IN (SELECT id FROM people WHERE name = "Kevin Bacon" AND birth = 1958);

@@ -1,0 +1,152 @@
+// Implements a dictionary's functionality
+
+#include <ctype.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <strings.h>
+#include "dictionary.h"
+
+// Represents a node in a hash table
+typedef struct node
+{
+    char word[LENGTH + 1];
+    struct node *next;
+}
+node;
+
+// TODO: Choose number of buckets in hash table
+//amplified number to 26 squared
+const unsigned int N = 26 * 26;
+
+// Hash table
+node *table[N];
+
+//add a counter for word count
+int wordCount = 0;
+
+// Returns true if word is in dictionary, else false
+bool check(const char *word)
+{
+    // TODO
+    //hash word and set in variable
+    int hashNumber = hash(word);
+
+    //repeat until word found, using a loop for nodes
+    for (node* tmp = table[hashNumber]; tmp != NULL; tmp = tmp->next)
+    {
+        //compare case-insensitively
+        if (strcasecmp(word, tmp->word) == 0)
+        {
+        return true;
+
+        }
+    }
+    //if word is not found, return false, and conversely
+    return false;
+}
+
+// Hashes word to a number
+unsigned int hash(const char *word)
+{
+    // TODO: Improve this hash function
+    //use two first letters of the word instead of just one
+    //attention with corner case: "a"
+
+    if (word[1] == '\0')
+    {
+        return toupper((word[0]) - 'A') * 26;
+    }
+    else
+    {
+        return ((toupper((word[0]) - 'A')) * 26) + (toupper(word[1] - 'A'));
+    }
+
+}
+
+// Loads dictionary into memory, returning true if successful, else false
+bool load(const char *dictionary)
+{
+    // TODO
+    //open the dictionary with a file pointer
+    //check successful use of file pointer
+    //then start reading words one by one until end of file
+    //open a node to allocate memory, based on the hash table
+    //check successful allocation
+    //if there is no problem with allocation and copy, at the end it must return true
+
+    FILE *openDictionary = fopen(dictionary, "r");
+    if (openDictionary == NULL)
+    {
+        return false;
+    }
+    //set a variable to store each word
+    char newWord[LENGTH + 1];
+
+    //scan in a loop word by word
+    while((fscanf(openDictionary, "%s", newWord)) != EOF)
+    {
+        //copy word into node
+        node *wordNode = malloc(sizeof(node));
+        //check correct memory allocation
+        if (wordNode == NULL)
+        {
+            return false;
+        }
+
+        //copy words from variable to node
+        strcpy(wordNode->word, newWord);
+
+        //obtain a hash for the node
+        int wordHash = hash(wordNode->word);
+
+        //link node to the hash table in the corresponding linked list
+        //first, point node of the new word to the first word in the linked list (to avoid losing the previous list)
+        wordNode->next = table[wordHash];
+        //now, point hash table node to the new word
+        table[wordHash] = wordNode;
+
+        //add one to counter
+        wordCount++;
+
+    }
+    //close dictionary
+    fclose(openDictionary);
+    return true;
+    //return true if everything is done sucessfully
+}
+
+// Returns number of words in dictionary if loaded, else 0 if not yet loaded
+unsigned int size(void)
+{
+    //just return the counter increasing with the load function
+    return wordCount;
+}
+
+// Unloads dictionary from memory, returning true if successful, else false
+bool unload(void)
+{
+
+    // TODO
+    //create a for loop that goes through each location of the hash table
+    for (int i = 0; i < N; i++)
+    {
+        //set a cursor that will move through the loop
+        node *cursor = table[i];
+
+        //use a while loop for moving through the linked list
+        while(cursor != NULL)
+        {
+            //add a temporary cursor to avoid losing track
+            node *tmp = cursor;
+
+            //move cursor to next position
+            cursor = cursor->next;
+
+            //free temporary node (cursor will be pointing to the next node)
+            free(tmp);
+        }
+    }
+    return true;
+}

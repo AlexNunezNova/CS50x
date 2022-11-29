@@ -1,0 +1,12 @@
+First, there must be a user validation.
+Use a do - while loop for this, for numbers smaller than 1 or higher than 8
+
+Then, use an if loop with a counter i for the rows, and there will be an imbedded if loop with a counter j for the column
+The first row will have just one block
+The second row will have two blocks
+And so on, until the n row that will have the n number of blocks submitted by the user.
+
+The j counter will then depend on the i counter for that.
+Then, to invert the pyramid we have to add some spaces.
+
+The number of spaces on each row will be (n-(i+1)), and then will decrease on each row

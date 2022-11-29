@@ -1,0 +1,48 @@
+sort1 uses: Bubble sort
+
+How do you know?: Reversed numbers are the worst scenario for this sort.
+It is clearly shown that this is the least performing in this category. On the other hand,
+its performance is better in sorted numbers, which is the optimal case.
+
+For reversed 5000.txt: 0.087s
+For reversed 10000.txt: 0.0393s
+For reversed 50000.txt: 6.002s > Time is greatly higher for reversed numbers
+For sorted 5000.txt: 0.132s
+For sorted 10000.txt: 0.112s
+For sorted 50000.txt: 0.548s > This time is considerably shorter, showing a lower omega value.
+For random 5000.txt: 0.080s
+For random 10000.txt: 0.373s
+For random 50000.txt: 7.968s
+
+
+sort2 uses: Merge sort
+
+How do you know?: Runtimes at higher numbers are clearly faster than all of the
+other cases, showing its O(n log n) value, inferior to the O(n squared)
+value of the other sorts
+
+For reversed 5000.txt: 0.057s
+For reversed 10000.txt: 0.086s
+For reversed 50000.txt: 0.0788s
+For sorted 5000.txt: 0.044s
+For sorted 10000.txt: 0.072s
+For sorted 50000.txt: 0.440s
+For random 5000.txt: 0.066s
+For random 10000.txt: 0.079s
+For random 50000.txt: 0.561s
+
+sort3 uses: Selection sort
+
+How do you know?: Selection sort has a similar "O" and "omega" value. This is shown where,
+even in the case of sorted numbers, where it could be faster, it takes almost the same amount
+of time than for random or reverse, showing that it goes for the same n-squared value for O and omega.
+
+For reversed 5000.txt: 0.051s
+For reversed 10000.txt: 0.176s
+For reversed 50000.txt: 3.553s > Consider this value
+For sorted 5000.txt: 0.073s
+For sorted 10000.txt: 0.201s
+For sorted 50000.txt: 3.194s > Times are similar even for sorted numbers
+For random 5000.txt: 0.073s
+For random 10000.txt: 0.185s
+For random 50000.txt: 3.142s
