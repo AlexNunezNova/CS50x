@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Cash
+{% endblock %}
+
+{% block main %}
+    <h3>Add cash to your wallet:</h3>
+    <br>
+    <form action="/cash" method="post">
+        <input name="cashAdded" autocomplete="off" autofocus class="form-control mx-auto w-auto" placeholder="Add cash" type="number"> <br>
+        <input type="submit" class="form-control mx-auto w-auto" value="Confirm">
+    </form>
+    <br>
+    <p>
+        {{ test }}
+    </p>
+{% endblock %}

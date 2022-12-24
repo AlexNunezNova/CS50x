@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    NDA
+{% endblock %}
+
+{% block main %}
+    <h3>Crea tu NDA 🖋️</h3>
+    <p>
+        Un NDA, o acuerdo de confidencialidad, es un documento que asegura que cierta información intercambiada antes, durante,
+        o después de un negocio no pueda ser divulgada. Este documento asume la existencia de un cliente y un proveedor.<br>
+        ¡Ingresa todos los datos necesarios y obtén tu NDA!<br>
+    </p>
+    <h4>Datos requeridos</h4>
+    <div>
+        <form action="/nda" method="post">
+            {% for field in fieldsList %}
+                {% if field=="fecha_acuerdo" %}
+                <label for="{{ field }}">Señala la fecha del acuerdo bajo el formato "01 de enero de 1990":</label>
+                <input name="{{ field }}" autocomplete="off" autofocus class="form-control mx-auto w-auto" placeholder="{{ field }}" type="text"> <br>
+                {% else %}
+                <input name="{{ field }}" autocomplete="off" autofocus class="form-control mx-auto w-auto" placeholder="{{ field }}" type="text"> <br>
+                {% endif %}
+            {% endfor %}
+            <button class="btn btn-primary" type="submit" download>Obten tu documento!</button>
+        </form>
+    </div>
+
+    <p>
+        {{ test }}
+    </p>
+
+{% endblock %}

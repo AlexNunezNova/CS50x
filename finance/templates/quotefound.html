@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote Results
+{% endblock %}
+
+{% block main %}
+    <h3>Results of your search:</h3>
+    <table class="center"> <!--reminds use of center in tables, look at CSS file-->
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Symbol</th>
+        </tr>
+        <tr>
+            <td>{{ stockLookup["name"] }}</td>
+            <td>{{ stockLookup["price"] }}</td>
+            <td>{{ stockLookup["symbol"] }}</td>
+        </tr>
+    </table>
+{% endblock %}

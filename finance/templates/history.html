@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <h3>{{ username }}, this is your transactions history:</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Stock Symbol</th>
+                <th>Operation</th>
+                <th>Quantity</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in log %}
+            <tr>
+                <td>{{ row["stock_symbol"] }}</td> <!--attention here to see if expression works-->
+                <td>{{ row["operation"] }}</td>
+                <td>{{ row["amount"] }}</td>
+                <td>{{ row["time"] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <p>
+        {{ test }}
+    </p>
+
+{% endblock %}

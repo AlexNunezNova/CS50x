@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Welcome!
+{% endblock %}
+
+{% block main %}
+    <h3>{{ username[0]["username"] }}, your current stocks and cash:</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Stock Symbol</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Total Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(stockSymbols | length) %}
+            <tr>
+                <td>{{ stockSymbols[i] }}</td> <!--attention here to see if expression works-->
+                <td>{{ amounts[i] }}</td>
+                <td>{{ stockValues[i] | usd }}</td>
+                <td>{{ subtotalStocks[i] | usd }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <table class="table">
+        <tr>
+            <th>Cash balance</th>
+            <th>Total money (cash and stocks value)</th>
+        </tr>
+        <tr>
+            <td>{{ userCash | usd }}</td>
+            <td>{{ totalCash | usd }}</td>
+        </tr>
+    </table>
+
+    <p>
+        {{ test }}
+    </p>
+
+{% endblock %}

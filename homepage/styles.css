@@ -1,0 +1,36 @@
+body {
+    text-align: center;
+}
+
+li {
+    list-style-type: circle;
+}
+
+.card {
+    padding: 4rem 4rem;
+    margin: 2rem 2rem;
+}
+
+#homepageTitle {
+    background-color: #477bff;
+    color: #fff;
+    margin-bottom: 3rem;
+    padding: 4rem 1rem;
+}
+
+
+#firstImage {
+    padding: 1rem 1rem;
+    border: 2px solid transparent;
+}
+
+#homepageFooter {
+    display: block;
+    font-size: 12px;
+}
+
+.pageHeader {
+    background-color: #FFB6C1;
+    padding: 1rem 1rem;
+    font-family: "montserrat", sans-serif;
+}

@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <h3>Please type a stock symbol:</h3>
+    <br>
+    <form action="/quote" method="post">
+        <input name="symbol" autocomplete="off" autofocus class="form-control mx-auto w-auto" placeholder="Search by stock symbol" type="text"> <br>
+        <button class="btn btn-primary" type="submit">Confirm Quote</button>
+    </form>
+    <br>
+    {% if quotefound %}
+        <h3 class="h3 success">Results of your search:</h3>
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Symbol</th>
+            </tr>
+            <tr>
+                <td>{{ stockLookup["name"] }}</td>
+                <td>{{ stockLookup["price"] | usd }}</td>
+                <td>{{ stockLookup["symbol"] }}</td>
+            </tr>
+        </table>
+    {% endif %}
+{% endblock %}
